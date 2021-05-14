@@ -46,11 +46,11 @@ dependencies {
     bxny_nationImplementation project(':yewulibs1:yewulibs1-libvariants')
     bxn_nationImplementation project(':yewulibs1:yewulibs1-libvariants')
     // jpush推送
-//    api project(':commonlibs:hunheku:libappjpush')
+    // api project(':commonlibs:hunheku:libappjpush')
     // jpush分享
     api project(':commonlibs:hunheku:libappjpushshare')
     // jpush统计
-    api project(':commonlibs:hunheku:libappjpushstatistics')
+    // api project(':commonlibs:hunheku:libappjpushstatistics')
     // Umeng统计
     api project(':commonlibs:hunheku:libappumengstatistics')
     // mob分享
@@ -61,19 +61,17 @@ dependencies {
     api librarys.glide47
     api project(':commonlibs:hunheku:libglide47')
     //TODO other libs
-// https://github.com/crazyandcoder/citypicker
-// pi 'liji.library.dev:citypickerview:4.3.2'
+    // https://github.com/crazyandcoder/citypicker
+    // pi 'liji.library.dev:citypickerview:4.3.2'
     api project(':commonlibs:yewulibs:slbcitypickerview')
     // slbbluetooth
     api project(':commonlibs:yewulibs:slbbluetooth')
-    // jiaozivideoplayer
-    api project(':commonlibs:yewulibs:slbjiaozvideonew')
     // ncalendar
     api project(':commonlibs:yewulibs:slbncalendar')
     // slbota
     api project(':commonlibs:yewulibs:slbota')
-// https://github.com/ikew0ng/SwipeBackLayout
-// api 'me.imid.swipebacklayout.lib:library:1.1.0'
+    // https://github.com/ikew0ng/SwipeBackLayout
+    // api 'me.imid.swipebacklayout.lib:library:1.1.0'
     api project(':commonlibs:yewulibs:slbswipebacklayout')
     // slbwifi
     api project(':commonlibs:yewulibs:slbwifi')
@@ -81,19 +79,10 @@ dependencies {
     api project(':commonlibs:smartrefreshlayout:refresh-footer')
     api project(':commonlibs:smartrefreshlayout:refresh-header')
     api project(':commonlibs:smartrefreshlayout:refresh-layout')
-    // https://github.com/CarGuo/GSYIjkJava
-    api project(':commonlibs:yewulibs:slbgsyvideonew')
-//    api('com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer:v8.1.3-jitpack') {
-//        exclude module: 'gsyVideoPlayer-armv5'
-//        exclude module: 'gsyVideoPlayer-armv7a'
-//        exclude module: 'gsyVideoPlayer-armv64'
-//        exclude module: 'gsyVideoPlayer-x86'
-//        exclude module: 'gsyVideoPlayer-x86_64'
-//    }
     // uploadpic
     api project(':commonlibs:yewulibs:slbimagepicker')
     // https://github.com/jenly1314/ZXingLite
-//    api 'com.king.zxing:zxing-lite:1.1.4-androidx'
+    // api 'com.king.zxing:zxing-lite:1.1.4-androidx'
     api project(':commonlibs:zxinglibs:zxinglibs1')
     api project(':commonlibs:zxinglibs:zxinglibs2')
     api project(':commonlibs:zxinglibs:zxinglibs3')
@@ -105,8 +94,16 @@ dependencies {
     api project(':commonlibs:hunheku:liblocations')
     // viewpager2 轮播图 https://github.com/youth5201314/banner
     api 'com.youth.banner:banner:2.1.0'
+    // https://github.com/CarGuo/GSYIjkJava
+    api project(':commonlibs:yewulibs:slbgsyvideonew')
+    // jiaozivideoplayer
+    api project(':commonlibs:yewulibs:slbjiaozvideonew')
     // 保利威直播
-    api project(':commonlibs:zhibopolyv:polyvapp')
+    api project(':commonlibs:zhibopolyv:demo')
+    // 环信IM
+    // api project(':commonlibs:huanxin:huanxinim')
+    // TencentIm
+    api project(':commonlibs:tencent:tencentim')
     //TODO aar
 //    /**rep*/implementation (name:'biz3slbappcomm_bxnt_nation', ext:'aar')
 

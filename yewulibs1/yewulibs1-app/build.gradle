@@ -38,6 +38,12 @@ android {
         pickFirst 'lib/x86/libRSSupport.so'
         pickFirst 'lib/x86/librsjni.so'
         //
+//        pickFirst 'lib/arm64-v8a/libBaiduMapSDK_util_v4_0_0.so'
+//        pickFirst 'lib/arm64-v8a/libBaiduMapSDK_map_v4_0_0.so'
+//        pickFirst 'lib/arm64-v8a/libBaiduMapSDK_util_v4_0_0.so'
+//        pickFirst 'lib/arm64-v8a/libBaiduMapSDK_base_v4_0_0.so'
+//        pickFirst 'lib/arm64-v8a/liblocSDK7.so'
+        //
 //        pickFirst 'lib/armeabi/libijkplayer.so'
 //        pickFirst 'lib/armeabi/libijkffmpeg.so'
 //        pickFirst 'lib/armeabi/libijksdl.so'
@@ -93,7 +99,7 @@ android {
                         // arguments "-D变量名=参数1 参数2"
                         "-DANDROID_CPP_FEATURES=rtti exceptions"
                 // 指定ABI
-                abiFilters "armeabi-v7a" ,  "arm64-v8a"
+                abiFilters /*"armeabi-v7a" ,*/  "arm64-v8a"
             }
         }
 

@@ -62,6 +62,7 @@ public class FitAndroidActivity extends AppCompatActivity {
         file_img = new File(file_img_url, file_img_name);
         // 文件bufen  INSTALLAPK
         String file_apk_name = "demoapk.apk";
+//        String file_apk_name = "山东视频会议_20210314.apk";
         String file_apk_assets_lujing = "apks/";
         file_apk = FitAndroidAssetsToCacheUtil.getAssetsHuanCunLujing(this, file_apk_name, file_apk_assets_lujing);
     }

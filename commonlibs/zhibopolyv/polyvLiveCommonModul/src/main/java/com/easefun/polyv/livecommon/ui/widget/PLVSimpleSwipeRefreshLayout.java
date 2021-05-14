@@ -4,7 +4,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.util.AttributeSet;
 
 public class PLVSimpleSwipeRefreshLayout extends SwipeRefreshLayout {

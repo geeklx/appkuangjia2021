@@ -1,0 +1,17 @@
+plugins {
+    id 'com.android.library'
+}
+apply from: './../../../commonlibs1.gradle'
+def librarys = rootProject.ext.dependencies //
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':commonlibs:hunheku:libutils')
+    //call_kit、call_lib、im_kit、im_lib的版本号码必须一致
+    api 'cn.rongcloud.sdk:call_kit:5.1.0'
+    api 'cn.rongcloud.sdk:call_lib:5.1.0'
+    api 'cn.rongcloud.sdk:im_kit:5.1.0'
+    api 'cn.rongcloud.sdk:im_lib:5.1.0'
+}
+// mob
+apply from: './../../hunheku/libappmob/MobSDK.gradle'
+

@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.LocaleList;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
@@ -17,17 +18,18 @@ import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
-import com.bolex.autoEx.AutoEx;
 import com.example.slbappcomm.broadcastreceiver.PhoneService;
 import com.example.slbappcomm.uploadimg2.GlideImageLoader2;
 import com.example.slbappcomm.utils.BanbenCommonUtils;
 import com.example.slbappindex.services.MOBIDservices;
 import com.example.slbappjpushshare.fenxiang.JPushShareUtils;
+import com.geek.libutils.app.BaseApp;
 import com.geek.libutils.app.MyLogUtil;
 import com.geek.libutils.data.MmkvUtils;
 import com.haier.cellarette.baselibrary.changelanguage.LocalManageUtil;
 import com.haier.cellarette.libretrofit.common.RetrofitNetNew;
 import com.haier.cellarette.libwebview.hois2.HiosHelper;
+import com.heytap.msp.push.HeytapPushManager;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
 import com.meituan.android.walle.WalleChannelReader;
@@ -37,9 +39,27 @@ import com.mob.PrivacyPolicy;
 import com.mob.pushsdk.MobPush;
 import com.mob.pushsdk.MobPushCallback;
 import com.tencent.bugly.Bugly;
+import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.imsdk.v2.V2TIMCallback;
+import com.tencent.imsdk.v2.V2TIMManager;
+import com.tencent.imsdk.v2.V2TIMMessage;
+import com.tencent.qcloud.tim.demo.SplashActivity;
+import com.tencent.qcloud.tim.demo.helper.ConfigHelper;
+import com.tencent.qcloud.tim.demo.signature.GenerateTestUserSig;
+import com.tencent.qcloud.tim.demo.thirdpush.HUAWEIHmsMessageService;
+import com.tencent.qcloud.tim.demo.utils.DemoLog;
+import com.tencent.qcloud.tim.demo.utils.MessageNotification;
+import com.tencent.qcloud.tim.demo.utils.PrivateConstants;
+import com.tencent.qcloud.tim.uikit.TUIKit;
+import com.tencent.qcloud.tim.uikit.base.IMEventListener;
+import com.tencent.qcloud.tim.uikit.modules.conversation.ConversationManagerKit;
+import com.tencent.rtmp.TXLiveBase;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.Locale;
@@ -51,7 +71,6 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import cn.jiguang.analytics.android.api.JAnalyticsInterface;
 import cn.jiguang.share.android.api.JShareInterface;
 import cn.jiguang.share.android.api.PlatformConfig;
 import me.jessyan.autosize.AutoSize;
@@ -88,7 +107,6 @@ public class MyApplication extends MultiDexApplication {
         configHios();
         configRetrofitNet();
         Utils.init(this);// com.blankj:utilcode:1.17.3
-        AutoEx.apply();
         //初始化极光分享
         configShare();
         //初始化极光统计
@@ -119,9 +137,176 @@ public class MyApplication extends MultiDexApplication {
 //        ApplicationUtil.init(this);
 //        监听前后台
         regActivityLife();
+        // 环信IM
+        initHx();
+        initThrowableHandler();
+        closeAndroidPDialog();
+        // TencentIM
+        initTencentIM();
+    }
+
+    private void initTencentIM() {
+        // bugly上报
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+        strategy.setAppVersion(V2TIMManager.getInstance().getVersion());
+        CrashReport.initCrashReport(getApplicationContext(), PrivateConstants.BUGLY_APPID, true, strategy);
+        TXLiveBase.getInstance().setLicence(this, "licenceUrl", "licenseKey");
+        /**
+         * TUIKit的初始化函数
+         *
+         * @param context  应用的上下文，一般为对应应用的ApplicationContext
+         * @param sdkAppID 您在腾讯云注册应用时分配的sdkAppID
+         * @param configs  TUIKit的相关配置项，一般使用默认即可，需特殊配置参考API文档
+         */
+        TUIKit.init(this, GenerateTestUserSig.SDKAPPID, new ConfigHelper().getConfigs());
+        HeytapPushManager.init(this, true);
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            private int foregroundActivities = 0;
+            private boolean isChangingConfiguration;
+            private IMEventListener mIMEventListener = new IMEventListener() {
+                @Override
+                public void onNewMessage(V2TIMMessage msg) {
+                    MessageNotification notification = MessageNotification.getInstance();
+                    notification.notify(msg);
+                }
+            };
+
+            private ConversationManagerKit.MessageUnreadWatcher mUnreadWatcher = new ConversationManagerKit.MessageUnreadWatcher() {
+                @Override
+                public void updateUnread(int count) {
+                    // 华为离线推送角标
+                    HUAWEIHmsMessageService.updateBadge(BaseApp.get(), count);
+                }
+            };
+
+            @Override
+            public void onActivityCreated(Activity activity, Bundle bundle) {
+                DemoLog.i(TAG, "onActivityCreated bundle: " + bundle);
+                if (bundle != null) { // 若bundle不为空则程序异常结束
+                    // 重启整个程序
+                    Intent intent = new Intent(activity, SplashActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+                foregroundActivities++;
+                if (foregroundActivities == 1 && !isChangingConfiguration) {
+                    // 应用切到前台
+                    DemoLog.i(TAG, "application enter foreground");
+                    V2TIMManager.getOfflinePushManager().doForeground(new V2TIMCallback() {
+                        @Override
+                        public void onError(int code, String desc) {
+                            DemoLog.e(TAG, "doForeground err = " + code + ", desc = " + desc);
+                        }
+
+                        @Override
+                        public void onSuccess() {
+                            DemoLog.i(TAG, "doForeground success");
+                        }
+                    });
+                    TUIKit.removeIMEventListener(mIMEventListener);
+                    ConversationManagerKit.getInstance().removeUnreadWatcher(mUnreadWatcher);
+                    MessageNotification.getInstance().cancelTimeout();
+                }
+                isChangingConfiguration = false;
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+                foregroundActivities--;
+                if (foregroundActivities == 0) {
+                    // 应用切到后台
+                    DemoLog.i(TAG, "application enter background");
+                    int unReadCount = ConversationManagerKit.getInstance().getUnreadTotal();
+                    V2TIMManager.getOfflinePushManager().doBackground(unReadCount, new V2TIMCallback() {
+                        @Override
+                        public void onError(int code, String desc) {
+                            DemoLog.e(TAG, "doBackground err = " + code + ", desc = " + desc);
+                        }
+
+                        @Override
+                        public void onSuccess() {
+                            DemoLog.i(TAG, "doBackground success");
+                        }
+                    });
+                    // 应用退到后台，消息转化为系统通知
+                    TUIKit.addIMEventListener(mIMEventListener);
+                    ConversationManagerKit.getInstance().addUnreadWatcher(mUnreadWatcher);
+                }
+                isChangingConfiguration = activity.isChangingConfigurations();
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
+    }
+
+    private void initHx() {
+//        // 初始化PreferenceManager
+//        PreferenceManager.init(this);
+//        // init hx sdk
+//        if (DemoHelper.getInstance().getAutoLogin()) {
+//            MyLogUtil.i("DemoApplication", "application initHx");
+//            DemoHelper.getInstance().init(this);
+//        }
 
     }
 
+    private void initThrowableHandler() {
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(@NonNull Thread t, @NonNull Throwable e) {
+                MyLogUtil.e("demoApp", e.getMessage());
+            }
+        });
+    }
+
+    /**
+     * 解决androidP 第一次打开程序出现莫名弹窗
+     * 弹窗内容“detected problems with api ”
+     */
+    private void closeAndroidPDialog() {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.P) {
+            try {
+                Class aClass = Class.forName("android.content.pm.PackageParser$Package");
+                Constructor declaredConstructor = aClass.getDeclaredConstructor(String.class);
+                declaredConstructor.setAccessible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                Class cls = Class.forName("android.app.ActivityThread");
+                Method declaredMethod = cls.getDeclaredMethod("currentActivityThread");
+                declaredMethod.setAccessible(true);
+                Object activityThread = declaredMethod.invoke(null);
+                Field mHiddenApiWarningShown = cls.getDeclaredField("mHiddenApiWarningShown");
+                mHiddenApiWarningShown.setAccessible(true);
+                mHiddenApiWarningShown.setBoolean(activityThread, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private Handler handler;
 
@@ -399,6 +584,11 @@ public class MyApplication extends MultiDexApplication {
 //         String channel = WalleChannelReader.getChannel(this);
 //         Bugly.setAppChannel(getApplicationContext(), channel);
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
+        // bugly上报
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+        strategy.setAppVersion(V2TIMManager.getInstance().getVersion());
+//        CrashReport.initCrashReport(getApplicationContext(), PrivateConstants.BUGLY_APPID, true, strategy);
+        CrashReport.initCrashReport(getApplicationContext(), "3aeeb18e5e", true, strategy);
 //        Bugly.init(this, "e0b1ba785f", true);
         if (TextUtils.equals(BanbenCommonUtils.banben_comm, "测试")) {
 //            CrashReport.initCrashReport(this, "068e7f32c3", true);// 测试
@@ -447,8 +637,8 @@ public class MyApplication extends MultiDexApplication {
 
     private void configTongji() {
         // 设置开启日志,发布时请关闭日志
-        JAnalyticsInterface.setDebugMode(true);
-        JAnalyticsInterface.init(this);
+//        JAnalyticsInterface.setDebugMode(true);
+//        JAnalyticsInterface.init(this);
     }
 
     private void configHios() {

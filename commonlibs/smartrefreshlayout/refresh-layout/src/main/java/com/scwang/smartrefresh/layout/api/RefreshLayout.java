@@ -8,10 +8,10 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 
 import com.scwang.smartrefresh.layout.constant.RefreshState;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 /**
  * 刷新布局
@@ -101,7 +101,7 @@ public interface RefreshLayout {
 
     /**
      * 标记数据全部加载完成，将不能再次触发加载功能（true）
-     * @deprecated 请使用 finishLoadmoreWithNoMoreData 和 resetNoMoreData 代替
+     * @deprecated 请使用 finishLoadMore 和 resetNoMoreData 代替
      */
     @Deprecated
     RefreshLayout setLoadmoreFinished(boolean finished);
@@ -184,12 +184,12 @@ public interface RefreshLayout {
     /**
      * 单独设置加载监听器
      */
-    RefreshLayout setOnLoadmoreListener(OnLoadmoreListener listener);
+    RefreshLayout setOnLoadmoreListener(OnLoadMoreListener listener);
 
     /**
      * 同时设置刷新和加载监听器
      */
-    RefreshLayout setOnRefreshLoadmoreListener(OnRefreshLoadmoreListener listener);
+    RefreshLayout setOnRefreshLoadMoreListener(OnRefreshLoadMoreListener listener);
 
     /**
      * 设置多功能监听器
@@ -219,7 +219,7 @@ public interface RefreshLayout {
     /**
      * 完成加载
      */
-    RefreshLayout finishLoadmore();
+    RefreshLayout finishLoadMore();
 
     /**
      * 完成刷新
@@ -240,27 +240,27 @@ public interface RefreshLayout {
     /**
      * 完成加载
      */
-    RefreshLayout finishLoadmore(int delayed);
+    RefreshLayout finishLoadMore(int delayed);
 
     /**
      * 完成加载
      */
-    RefreshLayout finishLoadmore(boolean success);
+    RefreshLayout finishLoadMore(boolean success);
 
     /**
      * 完成加载
      */
-    RefreshLayout finishLoadmore(int delayed, boolean success);
+    RefreshLayout finishLoadMore(int delayed, boolean success);
 
     /**
      * 完成加载
      */
-    RefreshLayout finishLoadmore(int delayed, boolean success, boolean noMoreData);
+    RefreshLayout finishLoadMore(int delayed, boolean success, boolean noMoreData);
 
     /**
      * 完成加载并标记没有更多数据
      */
-    RefreshLayout finishLoadmoreWithNoMoreData();
+    RefreshLayout finishLoadMoreWithNoMoreData();
 
     /**
      * 恢复没有更多数据的原始状态

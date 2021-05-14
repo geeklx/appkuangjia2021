@@ -12,18 +12,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Handler;
-//import android.support.annotation.ColorRes;
-//import android.support.annotation.NonNull;
-//import android.support.annotation.Nullable;
-//import android.support.annotation.RequiresApi;
-//import android.support.v4.content.ContextCompat;
-//import android.support.v4.view.NestedScrollingChild;
-//import android.support.v4.view.NestedScrollingChildHelper;
-//import android.support.v4.view.NestedScrollingParent;
-//import android.support.v4.view.NestedScrollingParentHelper;
-//import android.support.v4.view.ScrollingView;
-//import android.support.v4.view.ViewCompat;
-//import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -68,10 +56,10 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.impl.RefreshContentWrapper;
 import com.scwang.smartrefresh.layout.impl.RefreshFooterWrapper;
 import com.scwang.smartrefresh.layout.impl.RefreshHeaderWrapper;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.scwang.smartrefresh.layout.util.DelayedRunable;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.scwang.smartrefresh.layout.util.ViscousFluidInterpolator;
@@ -94,7 +82,6 @@ import static java.lang.System.currentTimeMillis;
  * Intelligent Refreshlayout
  * Created by SCWANG on 2017/5/26.
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, NestedScrollingParent, NestedScrollingChild {
 
     //<editor-fold desc="属性变量 property and variable">
@@ -153,7 +140,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
 
     //<editor-fold desc="监听属性">
     protected OnRefreshListener mRefreshListener;
-    protected OnLoadmoreListener mLoadmoreListener;
+    protected OnLoadMoreListener mLoadmoreListener;
     protected OnMultiPurposeListener mOnMultiPurposeListener;
     protected ScrollBoundaryDecider mScrollBoundaryDecider;
     //</editor-fold>
@@ -469,7 +456,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             }
         }
 
-        for (int i = 0, len = getChildCount(); mRefreshContent == null && i < len ; i++) {
+        for (int i = 0, len = getChildCount(); mRefreshContent == null && i < len; i++) {
             View view = getChildAt(i);
             if ((mRefreshHeader == null || view != mRefreshHeader.getView()) &&
                     (mRefreshFooter == null || view != mRefreshFooter.getView())) {
@@ -510,10 +497,10 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             };
         }
         if (mLoadmoreListener == null) {
-            mLoadmoreListener = new OnLoadmoreListener() {
+            mLoadmoreListener = new OnLoadMoreListener() {
                 @Override
-                public void onLoadmore(RefreshLayout refreshlayout) {
-                    refreshlayout.finishLoadmore(2000);
+                public void onLoadMore(RefreshLayout refreshlayout) {
+                    refreshlayout.finishLoadMore(2000);
                 }
             };
         }
@@ -522,7 +509,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             mRefreshFooter.setPrimaryColors(mPrimaryColors);
         }
         if (!mManualNestedScrolling && !isNestedScrollingEnabled()) {
-            for (ViewParent parent = getParent() ; parent != null ; parent = parent.getParent()) {
+            for (ViewParent parent = getParent(); parent != null; parent = parent.getParent()) {
                 if (parent instanceof NestedScrollingParent) {
                     setNestedScrollingEnabled(true);
                     mManualNestedScrolling = false;
@@ -534,7 +521,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
 
     @SuppressLint("RestrictedApi")
     @Override
-    protected void onMeasure(final int widthMeasureSpec,final int heightMeasureSpec) {
+    protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
         int minimumHeight = 0;
         final boolean isInEditMode = isInEditMode() && mEnablePreviewInEditMode;
 
@@ -785,7 +772,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             int finay = mScroller.getFinalY();
             if ((finay > 0 && mRefreshContent.canLoadmore())
                     || (finay < 0 && mRefreshContent.canRefresh())) {
-                if(mVerticalPermit) {
+                if (mVerticalPermit) {
                     int velocity;
                     if (Build.VERSION.SDK_INT >= 14) {
                         velocity = (int) mScroller.getCurrVelocity();
@@ -868,8 +855,8 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                     mScroller.forceFinished(true);
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    if ((mEnableAutoLoadmore&&mEnableLoadmore)
-                            || (mEnableOverScrollBounce&&(mEnableLoadmore||mEnableRefresh))) {
+                    if ((mEnableAutoLoadmore && mEnableLoadmore)
+                            || (mEnableOverScrollBounce && (mEnableLoadmore || mEnableRefresh))) {
                         mVelocityTracker.addMovement(e);
                     }
                     break;
@@ -930,7 +917,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                         if (dy > 0 && (mSpinner < 0 || ((isEnableRefresh() || mEnableOverScrollDrag) && mRefreshContent.canRefresh()))) {
                             mIsBeingDragged = true;
                             mTouchY = touchY - mTouchSlop;
-                        } else if (dy < 0 && (mSpinner > 0 || ((isEnableLoadmore() || mEnableOverScrollDrag) && ((mState==RefreshState.Loading&&mFooterLocked)||mRefreshContent.canLoadmore())))) {
+                        } else if (dy < 0 && (mSpinner > 0 || ((isEnableLoadmore() || mEnableOverScrollDrag) && ((mState == RefreshState.Loading && mFooterLocked) || mRefreshContent.canLoadmore())))) {
                             mIsBeingDragged = true;
                             mTouchY = touchY + mTouchSlop;
                         }
@@ -1172,10 +1159,10 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                 mRefreshFooter.onStartAnimator(SmartRefreshLayout.this, mFooterHeight, mFooterExtendHeight);
             }
             if (mLoadmoreListener != null) {
-                mLoadmoreListener.onLoadmore(SmartRefreshLayout.this);
+                mLoadmoreListener.onLoadMore(SmartRefreshLayout.this);
             }
             if (mOnMultiPurposeListener != null) {
-                mOnMultiPurposeListener.onLoadmore(SmartRefreshLayout.this);
+                mOnMultiPurposeListener.onLoadMore(SmartRefreshLayout.this);
                 mOnMultiPurposeListener.onFooterStartAnimator(mRefreshFooter, mFooterHeight, mFooterExtendHeight);
             }
         }
@@ -1554,7 +1541,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                 if (oldSpinner != mSpinner) {
                     if (mRefreshHeader.getSpinnerStyle() == SpinnerStyle.Translate) {
                         mRefreshHeader.getView().setTranslationY(mSpinner);
-                    } else if (mRefreshHeader.getSpinnerStyle() == SpinnerStyle.Scale){
+                    } else if (mRefreshHeader.getSpinnerStyle() == SpinnerStyle.Scale) {
                         mRefreshHeader.getView().requestLayout();
                     }
                     if (isAnimator) {
@@ -1594,7 +1581,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                 if (oldSpinner != mSpinner) {
                     if (mRefreshFooter.getSpinnerStyle() == SpinnerStyle.Translate) {
                         mRefreshFooter.getView().setTranslationY(mSpinner);
-                    } else if (mRefreshFooter.getSpinnerStyle() == SpinnerStyle.Scale){
+                    } else if (mRefreshFooter.getSpinnerStyle() == SpinnerStyle.Scale) {
                         mRefreshFooter.getView().requestLayout();
                     }
                     if (isAnimator) {
@@ -2334,7 +2321,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
      * 单独设置加载监听器
      */
     @Override
-    public SmartRefreshLayout setOnLoadmoreListener(OnLoadmoreListener listener) {
+    public SmartRefreshLayout setOnLoadmoreListener(OnLoadMoreListener listener) {
         this.mLoadmoreListener = listener;
         this.mEnableLoadmore = mEnableLoadmore || (!mManualLoadmore && listener != null);
         return this;
@@ -2344,7 +2331,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
      * 同时设置刷新和加载监听器
      */
     @Override
-    public SmartRefreshLayout setOnRefreshLoadmoreListener(OnRefreshLoadmoreListener listener) {
+    public SmartRefreshLayout setOnRefreshLoadMoreListener(OnRefreshLoadMoreListener listener) {
         this.mRefreshListener = listener;
         this.mLoadmoreListener = listener;
         this.mEnableLoadmore = mEnableLoadmore || (!mManualLoadmore && listener != null);
@@ -2428,9 +2415,9 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
      * 完成加载
      */
     @Override
-    public SmartRefreshLayout finishLoadmore() {
+    public SmartRefreshLayout finishLoadMore() {
         long passTime = System.currentTimeMillis() - mLastLoadingTime;
-        return finishLoadmore(Math.max(0, 1000 - (int) passTime));//保证加载动画有1000毫秒的时间
+        return finishLoadMore(Math.max(0, 1000 - (int) passTime));//保证加载动画有1000毫秒的时间
     }
 
     /**
@@ -2503,25 +2490,25 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
      * 完成加载
      */
     @Override
-    public SmartRefreshLayout finishLoadmore(int delayed) {
-        return finishLoadmore(delayed, true);
+    public SmartRefreshLayout finishLoadMore(int delayed) {
+        return finishLoadMore(delayed, true);
     }
 
     /**
      * 完成加载
      */
     @Override
-    public SmartRefreshLayout finishLoadmore(boolean success) {
+    public SmartRefreshLayout finishLoadMore(boolean success) {
         long passTime = System.currentTimeMillis() - mLastLoadingTime;
-        return finishLoadmore(success ? Math.max(0, 1000 - (int) passTime) : 0, success);
+        return finishLoadMore(success ? Math.max(0, 1000 - (int) passTime) : 0, success);
     }
 
     /**
      * 完成加载
      */
     @Override
-    public SmartRefreshLayout finishLoadmore(int delayed, final boolean success) {
-        return finishLoadmore(delayed, success, false);
+    public SmartRefreshLayout finishLoadMore(int delayed, final boolean success) {
+        return finishLoadMore(delayed, success, false);
     }
 
     /**
@@ -2529,7 +2516,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
      */
     @SuppressLint("RestrictedApi")
     @Override
-    public SmartRefreshLayout finishLoadmore(int delayed, final boolean success, final boolean noMoreData) {
+    public SmartRefreshLayout finishLoadMore(int delayed, final boolean success, final boolean noMoreData) {
         postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -2595,9 +2582,9 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
      * 完成加载并标记没有更多数据
      */
     @Override
-    public SmartRefreshLayout finishLoadmoreWithNoMoreData() {
+    public SmartRefreshLayout finishLoadMoreWithNoMoreData() {
         long passTime = System.currentTimeMillis() - mLastLoadingTime;
-        return finishLoadmore(Math.max(0, 1000 - (int) passTime), true, true);
+        return finishLoadMore(Math.max(0, 1000 - (int) passTime), true, true);
     }
 
     /**
@@ -2668,6 +2655,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                             mLastTouchX = getMeasuredWidth() / 2;
                             setStatePullDownToRefresh();
                         }
+
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             reboundAnimator = null;
@@ -2899,7 +2887,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
                     }
                     break;
                 }
-                case LoadFinish:{
+                case LoadFinish: {
                     if (layout.mState == RefreshState.Loading) {
                         layout.notifyStateChanged(RefreshState.LoadFinish);
                     }
@@ -2980,16 +2968,19 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             layout.mFooterBackgroundColor = backgroundColor;
             return this;
         }
+
         @Override
         public RefreshKernel requestHeaderNeedTouchEventWhenRefreshing(boolean request) {
             layout.mHeaderNeedTouchEventWhenRefreshing = request;
             return this;
         }
+
         @Override
         public RefreshKernel requestFooterNeedTouchEventWhenLoading(boolean request) {
             layout.mFooterNeedTouchEventWhenLoading = request;
             return this;
         }
+
         @Override
         public RefreshKernel requestDefaultHeaderTranslationContent(boolean translation) {
             if (!layout.mManualHeaderTranslationContent) {
@@ -2998,6 +2989,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             }
             return this;
         }
+
         @Override
         public RefreshKernel requestRemeasureHeightForHeader() {
             if (layout.mHeaderHeightStatus.notifyed) {
@@ -3005,6 +2997,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             }
             return this;
         }
+
         @Override
         public RefreshKernel requestRemeasureHeightForFooter() {
             if (layout.mFooterHeightStatus.notifyed) {
@@ -3012,6 +3005,7 @@ public class SmartRefreshLayout extends ViewGroup implements RefreshLayout, Nest
             }
             return this;
         }
+
         @Override
         public RefreshKernel requestFloorDuration(int duration) {
             layout.mFloorDuration = duration;

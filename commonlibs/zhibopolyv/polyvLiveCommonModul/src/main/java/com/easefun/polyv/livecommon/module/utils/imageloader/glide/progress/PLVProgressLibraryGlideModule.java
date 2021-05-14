@@ -1,6 +1,7 @@
 //package com.easefun.polyv.livecommon.module.utils.imageloader.glide.progress;
 //
 //import android.content.Context;
+//
 //import androidx.annotation.NonNull;
 //
 //import com.bumptech.glide.Glide;
@@ -18,10 +19,11 @@
 //    public boolean isManifestParsingEnabled() {
 //        return false;
 //    }
+//
 //    @Override
 //    public void registerComponents(@NonNull Context context, @NonNull Glide glide,
 //                                   @NonNull Registry registry) {
 //        super.registerComponents(context, glide, registry);
-////        registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(PLVMyProgressManager.getOkHttpClient()));
+//        registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(PLVMyProgressManager.getOkHttpClient()));
 //    }
 //}

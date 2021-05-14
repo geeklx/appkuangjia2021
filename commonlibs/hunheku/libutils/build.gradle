@@ -35,7 +35,7 @@ dependencies {
 //    implementation "androidx.multidex:multidex:2.0.1"
 //    implementation "com.alibaba:fastjson:1.2.70"
 //    implementation "com.google.code.gson:gson:2.8.6"
-//    implementation "com.blankj:utilcodex:1.30.5"
+//    implementation "com.blankj:utilcodex:1.30.6"
 //    implementation "org.greenrobot:eventbus:3.1.1"
 //    implementation "me.jessyan:autosize:1.2.1"
 //    implementation "androidx.viewpager2:viewpager2:1.0.0"

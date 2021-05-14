@@ -15,6 +15,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.slbappcomm.base.SlbBaseLazyFragmentNew;
 import com.example.slbappindex.R;
 import com.geek.libutils.app.MyLogUtil;
+import com.google.gson.Gson;
 import com.haier.cellarette.baselibrary.yanzheng.LocalBroadcastManagers;
 import com.haier.cellarette.baselibrary.zothers.ComeraAutomation;
 
@@ -75,6 +76,7 @@ public class ShouyeF3 extends SlbBaseLazyFragmentNew {
             tablayoutId = getArguments().getString("tablayoutId");
             MyLogUtil.e("tablayoutId->", "onCreate->" + tablayoutId);
         }
+
     }
 
     @Override
@@ -87,6 +89,7 @@ public class ShouyeF3 extends SlbBaseLazyFragmentNew {
         super.setup(rootView, savedInstanceState);
         tv_center_content = rootView.findViewById(R.id.shouyef3_tv1);
         tv_center_content.setText("我的");
+        tv_center_content.setVisibility(View.GONE);
         test(rootView);
         mMessageReceiver = new MessageReceiverIndex();
         IntentFilter filter = new IntentFilter();
@@ -94,6 +97,10 @@ public class ShouyeF3 extends SlbBaseLazyFragmentNew {
         filter.addAction("ShouyeF3");
         LocalBroadcastManagers.getInstance(getActivity()).registerReceiver(mMessageReceiver, filter);
         donetwork();
+//        ShouyeFooterBean bean = new Gson().fromJson("{}", ShouyeFooterBean.class);
+//        MyLogUtil.e("sssssssssss", bean.toString());
+//        MyLogUtil.e("sssssssssss", bean.getText_id());
+//        tv_center_content.setText(bean.getText_id());
     }
 
     /**
@@ -183,7 +190,7 @@ public class ShouyeF3 extends SlbBaseLazyFragmentNew {
         rootView.findViewById(R.id.tv7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AppUtils.getAppPackageName() + ".hs.act.slbapp.PLVLoginActivity");
+                Intent intent = new Intent(AppUtils.getAppPackageName() + ".hs.act.slbapp.PLVEntranceActivity");
                 startActivity(intent);
             }
         });
@@ -198,6 +205,20 @@ public class ShouyeF3 extends SlbBaseLazyFragmentNew {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AppUtils.getAppPackageName() + ".hs.act.slbapp.GSYMainActivity");
+                startActivity(intent);
+            }
+        });
+        rootView.findViewById(R.id.tv10).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppUtils.getAppPackageName() + ".hs.act.slbapp.IMSplashActivity");
+                startActivity(intent);
+            }
+        });
+        rootView.findViewById(R.id.tv11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppUtils.getAppPackageName() + ".hs.act.slbapp.TencentIMSplashActivity");
                 startActivity(intent);
             }
         });

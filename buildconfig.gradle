@@ -135,7 +135,7 @@ yanyusong                         : 'com.yanyusong.y_divideritemdecoration:y_div
 jsoup                             : 'org.jsoup:jsoup:1.12.1',
 //--------------------------------
 //blankj                            : 'com.blankj:utilcode:1.27.2',
-blankj                            : 'com.blankj:utilcodex:1.30.5',
+blankj                            : 'com.blankj:utilcodex:1.30.6',
 //--------------------------------
 //MMKV
 mmkv                              : 'com.tencent:mmkv-static:1.2.7',

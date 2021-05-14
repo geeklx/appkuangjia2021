@@ -1,6 +1,6 @@
 # hunheappkuangjia
 
-混合移动应用框架APP-Android13
+混合移动应用框架APP-Android16
 
 1.ANROOMCrashActivity：验证APP压力测试
 
@@ -429,7 +429,11 @@ shadeslider = rootView.findViewById(R.id.shadeslider);
     // 高德地图                                                     地图marker    
     api project(':commonlibs:hunheku:liblocations')
 
+95.commonlibs：zhibopolyv：保利威直播
 
+96.huanxin：环信IM
+
+97.tencent：tencentim：腾讯云IM
 
 
 

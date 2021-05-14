@@ -61,7 +61,7 @@ public class AndroidFileUtil {
 
     public static Uri getUriForFile24(File file) {
         Uri fileUri = androidx.core.content.FileProvider.getUriForFile(Appuri.get(),
-                Appuri.get().getPackageName() + ".android7.fileprovider",
+                Appuri.get().getPackageName() + ".fileprovider",
                 file);
         return fileUri;
     }

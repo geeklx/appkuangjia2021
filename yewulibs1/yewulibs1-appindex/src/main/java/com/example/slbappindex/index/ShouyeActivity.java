@@ -348,7 +348,7 @@ public class ShouyeActivity extends SlbBaseActivity implements CheckverionView {
             UpdateAppUtils.from(ShouyeActivity.this)
                     .serverVersionCode(serverVersionCode)
                     .serverVersionName(serverVersionName)
-                    .downloadPath("apk/" + getPackageName() + ".apk")
+                    .downloadPath("apks/" + getPackageName() + ".apk")
                     .showProgress(true)
                     .isForce(true)
                     .apkPath(apkPath)
@@ -366,7 +366,7 @@ public class ShouyeActivity extends SlbBaseActivity implements CheckverionView {
             UpdateAppUtils.from(ShouyeActivity.this)
                     .serverVersionCode(serverVersionCode)
                     .serverVersionName(serverVersionName)
-                    .downloadPath("apk/" + getPackageName() + ".apk")
+                    .downloadPath("apks/" + getPackageName() + ".apk")
                     .showProgress(true)
                     .apkPath(apkPath)
                     .downloadBy(UpdateAppUtils.DOWNLOAD_BY_APP)    //default

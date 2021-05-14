@@ -10,7 +10,7 @@ import com.scwang.smartrefresh.layout.constant.RefreshState;
  * Created by SCWANG on 2017/5/26.
  */
 
-public class SimpleMultiPurposeListener implements OnMultiPurposeListener {
+public  class SimpleMultiPurposeListener implements OnMultiPurposeListener {
 
     @Override
     public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
@@ -68,7 +68,7 @@ public class SimpleMultiPurposeListener implements OnMultiPurposeListener {
     }
 
     @Override
-    public void onLoadmore(RefreshLayout refreshlayout) {
+    public void onLoadMore(RefreshLayout refreshlayout) {
 
     }
 
