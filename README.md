@@ -114,7 +114,7 @@ shadeslider = rootView.findViewById(R.id.shadeslider);
 ###34.ScrollViewAct：用户须知滚动布局
 
 ###35.ShadowLayout:呼吸布局
-<com.gigamole.library.ShadowLayout
+    <com.gigamole.library.ShadowLayout
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        app:sl_shadow_angle="2"
@@ -128,7 +128,7 @@ shadeslider = rootView.findViewById(R.id.shadeslider);
            android:id="@+id/ls"
            android:layout_height="100dp"
            android:src="@mipmap/menu_stick" />
-   </com.gigamole.library.ShadowLayout>
+    </com.gigamole.library.ShadowLayout>
    final ShadowLayout shadowLayout = (ShadowLayout) findViewById(R.id.sl);
    shadowLayout.setIsShadowed(true);
    shadowLayout.setShadowAngle(45);//阴影角度
