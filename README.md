@@ -1,46 +1,46 @@
 # hunheappkuangjia
 
-###混合移动应用框架APP-Android17
+### 混合移动应用框架APP-Android17
 
-###1.ANROOMCrashActivity：验证APP压力测试
+### 1.ANROOMCrashActivity：验证APP压力测试
 
-###2.AssetsMainActivity：为APP申请访问文件，写入txt存储，copy到assets
+### 2.AssetsMainActivity：为APP申请访问文件，写入txt存储，copy到assets
 
-###3.BannerViewDemoActivity：banner防止OOM
+### 3.BannerViewDemoActivity：banner防止OOM
 
-###4.BannerDemoActivity：banner支持各种样式
+### 4.BannerDemoActivity：banner支持各种样式
 
-###5.BtnActivity：点击按钮按压效果
+### 5.BtnActivity：点击按钮按压效果
 
-###6.CacheUtil：清除缓存
+### 6.CacheUtil：清除缓存
 
-###7.CarAct：加入到购物车动画
+### 7.CarAct：加入到购物车动画
 
-###8.ChangeLanActivity：切换APP语言
+### 8.ChangeLanActivity：切换APP语言
 
-###9.BaseApp：APP堆栈管理
+### 9.BaseApp：APP堆栈管理
 
-###10.DownLoadDialog：自定义下载loading
+### 10.DownLoadDialog：自定义下载loading
 
-###11.EmptyViewNew1,NiubiEmptyViewNew1：EmptyViewMainActivity自定义数据布局切换
+### 11.EmptyViewNew1,NiubiEmptyViewNew1：EmptyViewMainActivity自定义数据布局切换
 
-###12.ExpandableAct：二级tree
+### 12.ExpandableAct：二级tree
 
-###13.TagFlowLayout：自定义搜索历史标签
+### 13.TagFlowLayout：自定义搜索历史标签
 
-###14.handler：handler各种使用
+### 14.handler：handler各种使用
 
-###15.ImgOtherToBitmap：图片utils
+### 15.ImgOtherToBitmap：图片utils
 
-###16.SoftHideKeyBoardUtil：自定义弹出键盘，解决键盘档住输入框
+### 16.SoftHideKeyBoardUtil：自定义弹出键盘，解决键盘档住输入框
 
-###17.LiandongDemoAct：分类列表联动 饿了么
+### 17.LiandongDemoAct：分类列表联动 饿了么
 
-###18.LikeButtonActivity：点赞按钮
+### 18.LikeButtonActivity：点赞按钮
 
-###19.ShowLoadingUtil：自定义loading
+### 19.ShowLoadingUtil：自定义loading
 
-###20.LobsterPicker：根据颜色变化的进度条
+### 20.LobsterPicker：根据颜色变化的进度条
  <com.haier.cellarette.baselibrary.lobsterpicker.sliders.LobsterShadeSlider
                     android:id="@+id/shadeslider"
                     android:layout_width="match_parent"
@@ -85,35 +85,35 @@ shadeslider = rootView.findViewById(R.id.shadeslider);
             }
         });
 
-###21.MusicActivity：播放本地文件
-
-###22.NetEmptyViewMainActivity：联网是否布局动态
-
-###23.ExpandViewRect：点击范围
-
-###24.MohuReUtil：背景磨砂
-
-###25.QrCodeUtil：二维码生成
-
-###26.QuanxianActivity：获取权限
-
-###27.BaeRecycleViewActivity：recycleview使用大全
-
-###28.RecycleViewMainActivity：recycleview使用自定义
-
-###29.AdvertiseLinearLayoutManager：recycleview吸附效果
-
-###30.JackSnapHelper：recycleview按照item滚动
-
-###31.RingActivity：系统声音自定义
-
-###32.LightOnOffUtils：亮息屏
-
-###33.ScreenListenerUtils：屏幕监听
-
-###34.ScrollViewAct：用户须知滚动布局
-
-###35.ShadowLayout:呼吸布局
+### 21.MusicActivity：播放本地文件
+ 
+### 22.NetEmptyViewMainActivity：联网是否布局动态
+ 
+### 23.ExpandViewRect：点击范围
+ 
+### 24.MohuReUtil：背景磨砂
+ 
+### 25.QrCodeUtil：二维码生成
+ 
+### 26.QuanxianActivity：获取权限
+ 
+### 27.BaeRecycleViewActivity：recycleview使用大全
+ 
+### 28.RecycleViewMainActivity：recycleview使用自定义
+ 
+### 29.AdvertiseLinearLayoutManager：recycleview吸附效果
+ 
+### 30.JackSnapHelper：recycleview按照item滚动
+ 
+### 31.RingActivity：系统声音自定义
+ 
+### 32.LightOnOffUtils：亮息屏
+ 
+### 33.ScreenListenerUtils：屏幕监听
+ 
+### 34.ScrollViewAct：用户须知滚动布局
+ 
+### 35.ShadowLayout:呼吸布局
     <com.gigamole.library.ShadowLayout
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
@@ -136,131 +136,131 @@ shadeslider = rootView.findViewById(R.id.shadeslider);
    shadowLayout.setShadowDistance(30);//阴影距离
    shadowLayout.setShadowColor(Color.DKGRAY);//阴影颜色
 
-###36.ShoppingCarActivity：添加购物车动画
-
-###37.LxShimmerLayout：布局加载动画
-
-###38.SizeUtils：尺寸相关工具类
-
-###39.SmartBar：返回|主页 工具类 一行解决你的问题
-
-###40.AlphaView：自定义导航页
-
-###41.StatusBarUtil，StatusBarUtilV7：透明栏
-
-###42.UnAnimTabLayout：自定义UnAnimTabLayout，ViewPagerSlide：自定义是否滚动viewpage
-
-###43.Toasty：自定义toast
-
-###44.MToast：自定义toast
-
-###45.UpdateManager：更新APP通过xml
-
-###46.YanzhengUtil：验证util
-
-###47.LocalBroadcastManagers：本地内部广播
-
-###48.DemoZuniScrollViewActivity：阻尼效果
-
-###49.AlertView：仿IOS的弹出框
-
-###50.AutofitTextView：自定义缩小textview
-
-###51.BookPaddingDecoration：自定义recycleview书架线
-        recycleViewDivider = new BookPaddingDecoration(this, OrientationHelper.VERTICAL, R.drawable.bg_book_shelf_charge9);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3, RecyclerView.VERTICAL, false));
-                mRecyclerView.removeItemDecoration(recycleViewDivider);// 书架bufen
-            } else {
-                mRecyclerView.addItemDecoration(recycleViewDivider);// 书架bufen
-
-###52.CircleImageView：自义定圆形图片
-
-###53.CircularSeekBar：
-
-###54.CustomImageView：自定义View，实现圆角，圆形等效果
-
-###55.LxLinearLayout，LxRelativeLayout：自定义点击拦截layout
+### 36.ShoppingCarActivity：添加购物车动画
+ 
+### 37.LxShimmerLayout：布局加载动画
+ 
+### 38.SizeUtils：尺寸相关工具类
+ 
+### 39.SmartBar：返回|主页 工具类 一行解决你的问题
+ 
+### 40.AlphaView：自定义导航页
+ 
+### 41.StatusBarUtil，StatusBarUtilV7：透明栏
+ 
+### 42.UnAnimTabLayout：自定义UnAnimTabLayout，ViewPagerSlide：自定义是否滚动viewpage
+ 
+### 43.Toasty：自定义toast
+ 
+### 44.MToast：自定义toast
+ 
+### 45.UpdateManager：更新APP通过xml
+ 
+### 46.YanzhengUtil：验证util
+ 
+### 47.LocalBroadcastManagers：本地内部广播
+ 
+### 48.DemoZuniScrollViewActivity：阻尼效果
+ 
+### 49.AlertView：仿IOS的弹出框
+ 
+### 50.AutofitTextView：自定义缩小textview
+ 
+### 51.BookPaddingDecoration：自定义recycleview书架线
+         recycleViewDivider = new BookPaddingDecoration(this, OrientationHelper.VERTICAL, R.drawable.bg_book_shelf_charge9);
+         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3, RecyclerView.VERTICAL, false));
+                 mRecyclerView.removeItemDecoration(recycleViewDivider);// 书架bufen
+             } else {
+                 mRecyclerView.addItemDecoration(recycleViewDivider);// 书架bufen
+ 
+### 52.CircleImageView：自义定圆形图片
+ 
+### 53.CircularSeekBar：
+ 
+### 54.CustomImageView：自定义View，实现圆角，圆形等效果
+ 
+### 55.LxLinearLayout，LxRelativeLayout：自定义点击拦截layout
    rl1.setTouch(true);
 
-###56.NoScrollView：自定义不滚动view
-
-###57.RecycleViewDivider：自定义添加默认分割线
-
-###58.SmoothCheckBox：自定义checkbox
-
-###59.SwitchButton：自义定开关按钮
-
-###60.AnnotateUtils：自定义butternife
-
-###61.AutoHideInputMethodFrameLayout：自定义键盘弹起layout
-
-###62.DaojishiUtil：时间转换util
-
-###63.NavigationBarUtil：虚拟键util
-
-###64.NoDoubleClickListener：两次误点击
-
-###65.SimpleTagImageView：图片标签
-
-###66.SpannableStringUtils：
-
-###67.StartHiddenManager：测试入口util
-
-###68.libagentweb-core：自定义webview
-
-###69.libappjpush：极光推送
-
-###70.libappjpushshare：极光分享
-
-###71.libappjpushstatistics：极光统计
-
-###72.libappmob：mob分享推送
-
-###73.libapppay：支付宝，微信，银联支付
-
-###74.libappumengstatistics：友盟统计
-
-###75.libglide47：glide4.10.0
-
-###76.libmvp：接口设计模式
-
-###77.librararyforfileprovdider：动态权限申请
-
-###78.libretrofit：网络请求
-
-###79.libupdateapputilsold：升级APP
-
-###80.libutils：无敌的工具类
-
-###81.libwebview：HIOS协议
-
-###82.libZRecyclerView：自定义recycleview支持分页
-
-###83.smartrefreshlayout：下拉刷新上拉加载
-
-###84.slbbluetooth：蓝牙
-
-###85.slbcitypickerview：自定义城市选择
-
-###86.slbdachshundtablayout：自定义tablayout
-
-###87.slbimagepicker：图片上传九宫格
-
-###88.slbjiaozivideoplayer：饺子视频播放器
-
-###89.slbncalendar：自定义日历
-
-###90.slbota：OTA升级
-
-###91.slbswipebacklayout：返回IOS
-
-###92.slbwifi：自定义WiFi
-
-###93.zxinglibs：扫码二维码
-
-###94.zuser_adapter+xml：自定义xml布局util
-
-###95.baselibrary
+### 56.NoScrollView：自定义不滚动view
+ 
+### 57.RecycleViewDivider：自定义添加默认分割线
+ 
+### 58.SmoothCheckBox：自定义checkbox
+ 
+### 59.SwitchButton：自义定开关按钮
+ 
+### 60.AnnotateUtils：自定义butternife
+ 
+### 61.AutoHideInputMethodFrameLayout：自定义键盘弹起layout
+ 
+### 62.DaojishiUtil：时间转换util
+ 
+### 63.NavigationBarUtil：虚拟键util
+ 
+### 64.NoDoubleClickListener：两次误点击
+ 
+### 65.SimpleTagImageView：图片标签
+ 
+### 66.SpannableStringUtils：
+ 
+### 67.StartHiddenManager：测试入口util
+ 
+### 68.libagentweb-core：自定义webview
+ 
+### 69.libappjpush：极光推送
+ 
+### 70.libappjpushshare：极光分享
+ 
+### 71.libappjpushstatistics：极光统计
+ 
+### 72.libappmob：mob分享推送
+ 
+### 73.libapppay：支付宝，微信，银联支付
+ 
+### 74.libappumengstatistics：友盟统计
+ 
+### 75.libglide47：glide4.10.0
+ 
+### 76.libmvp：接口设计模式
+ 
+### 77.librararyforfileprovdider：动态权限申请
+ 
+### 78.libretrofit：网络请求
+ 
+### 79.libupdateapputilsold：升级APP
+ 
+### 80.libutils：无敌的工具类
+ 
+### 81.libwebview：HIOS协议
+ 
+### 82.libZRecyclerView：自定义recycleview支持分页
+ 
+### 83.smartrefreshlayout：下拉刷新上拉加载
+ 
+### 84.slbbluetooth：蓝牙
+ 
+### 85.slbcitypickerview：自定义城市选择
+ 
+### 86.slbdachshundtablayout：自定义tablayout
+ 
+### 87.slbimagepicker：图片上传九宫格
+ 
+### 88.slbjiaozivideoplayer：饺子视频播放器
+ 
+### 89.slbncalendar：自定义日历
+ 
+### 90.slbota：OTA升级
+ 
+### 91.slbswipebacklayout：返回IOS
+ 
+### 92.slbwifi：自定义WiFi
+ 
+### 93.zxinglibs：扫码二维码
+ 
+### 94.zuser_adapter+xml：自定义xml布局util
+ 
+### 95.baselibrary
 
 ###    // https://github.com/teprinciple/UpdateAppUtils  升级
 ###    api 'com.teprinciple:updateapputilsx:2.3.0'
@@ -360,7 +360,7 @@ shadeslider = rootView.findViewById(R.id.shadeslider);
 ###    // https://github.com/yanzhenjie/NoFragment             Fragment的封装，启动Fragment只需要调用startFragment(XXFragment.class);
 ###    api 'com.yanzhenjie:fragment:1.0.1'
 
-###96.yewulibs1-appcomm
+### 96.yewulibs1-appcomm
 
 ###    //TODO common libs
 ###    implementation project(':commonlibs:baselibrary')
@@ -429,11 +429,11 @@ shadeslider = rootView.findViewById(R.id.shadeslider);
 ###    // 高德地图                                                     地图marker    
 ###    api project(':commonlibs:hunheku:liblocations')
 
-###95.commonlibs：zhibopolyv：保利威直播
+### 95.commonlibs：zhibopolyv：保利威直播
 
-###96.huanxin：环信IM
+### 96.huanxin：环信IM
 
-###97.tencent：tencentim：腾讯云IM
+### 97.tencent：tencentim：腾讯云IM
 
 
 
