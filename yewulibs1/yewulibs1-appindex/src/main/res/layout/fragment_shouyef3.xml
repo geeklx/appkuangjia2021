@@ -163,6 +163,18 @@
                 android:text="TencentIM"
                 android:textColor="@color/gray4A4A4A"
                 android:textSize="16mm" />
+
+            <TextView
+                android:id="@+id/tv12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16mm"
+                android:layout_marginTop="12mm"
+                android:layout_marginRight="16mm"
+                android:gravity="center"
+                android:text="RongCloudIM"
+                android:textColor="@color/gray4A4A4A"
+                android:textSize="16mm" />
         </LinearLayout>
 
         <LinearLayout

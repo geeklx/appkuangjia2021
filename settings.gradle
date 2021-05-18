@@ -1,4 +1,12 @@
+// start aar
 include ':libsCenter', ':biz-libs'
+// end aar
+
+// start aar
+include ':libsCenterNew',
+        ':libsCenterNew:alipaysdk',
+        ':libsCenterNew:hooklistenerlib2',
+        ':libsCenterNew:opendroid2'
 // end aar
 
 //include ':yewulibs3',
@@ -63,6 +71,10 @@ include ':commonlibs',
 //        ':commonlibs:huanxin:ease-im-kit',
 //        ':commonlibs:huanxin:ease-call-kit',
         ':commonlibs:rongcloud:rongcloudim',
+//        ':commonlibs:rongcloud:CallKit',
+//        ':commonlibs:rongcloud:CallLib',
+//        ':commonlibs:rongcloud:IMKit',
+//        ':commonlibs:rongcloud:IMLib',
         ':commonlibs:tencent:tencentim',
         ':commonlibs:yewulibs:slbcitypickerview',
         ':commonlibs:yewulibs:slbbluetooth',

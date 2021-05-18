@@ -586,7 +586,7 @@ public class MyApplication extends MultiDexApplication {
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // bugly上报
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
-        strategy.setAppVersion(V2TIMManager.getInstance().getVersion());
+        strategy.setAppVersion(AppUtils.getAppVersionName());
 //        CrashReport.initCrashReport(getApplicationContext(), PrivateConstants.BUGLY_APPID, true, strategy);
         CrashReport.initCrashReport(getApplicationContext(), "3aeeb18e5e", true, strategy);
 //        Bugly.init(this, "e0b1ba785f", true);

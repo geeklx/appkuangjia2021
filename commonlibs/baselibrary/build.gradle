@@ -43,7 +43,7 @@ dependencies {
     // https://github.com/HuanHaiLiuXin/CoolViewPager
     api 'com.github.HuanHaiLiuXin:CoolViewPager:v1.0.0'
     // https://github.com/airbnb/lottie-android
-    api 'com.airbnb.android:lottie:2.5.5'
+    api 'com.airbnb.android:lottie:3.4.2'
     // https://github.com/greenrobot/EventBus
     api 'org.greenrobot:eventbus:3.1.1'
     // https://github.com/Meituan-Dianping/walle

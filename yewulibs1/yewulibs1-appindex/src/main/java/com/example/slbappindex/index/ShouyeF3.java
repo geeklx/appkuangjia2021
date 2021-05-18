@@ -222,6 +222,13 @@ public class ShouyeF3 extends SlbBaseLazyFragmentNew {
                 startActivity(intent);
             }
         });
+        rootView.findViewById(R.id.tv12).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppUtils.getAppPackageName() + ".hs.act.slbapp.RongCloudAct");
+                startActivity(intent);
+            }
+        });
     }
 
 }

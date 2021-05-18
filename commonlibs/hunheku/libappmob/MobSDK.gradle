@@ -3,6 +3,7 @@ apply plugin: 'com.mob.sdk'
 MobSDK {
     appKey "m323eb200717e4"
     appSecret "66293d13de94c6389d110a876796af84"
+    apm false
     //fp true
     MobPush {
         devInfo {

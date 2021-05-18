@@ -70,7 +70,7 @@
         <activity
             android:name="com.tencent.qcloud.tim.demo.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashThemeTencent">
             <intent-filter>
                 <action android:name="${applicationId}.hs.act.slbapp.TencentIMSplashActivity" />
                 <category android:name="android.intent.category.DEFAULT" />

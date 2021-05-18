@@ -104,6 +104,8 @@ dependencies {
     // api project(':commonlibs:huanxin:huanxinim')
     // TencentIm
     api project(':commonlibs:tencent:tencentim')
+    // RongCloudIM
+    api project(':commonlibs:rongcloud:rongcloudim')
     //TODO aar
 //    /**rep*/implementation (name:'biz3slbappcomm_bxnt_nation', ext:'aar')
 

@@ -20,12 +20,14 @@ def librarys = rootProject.ext.dependencies //
 //        }
 //    }
 //}
-repositories { flatDir { dirs 'libs' } }
+//repositories { flatDir { dirs 'libs' } }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':commonlibs:hunheku:libutils')
     // test aar jar
-    implementation(name: 'opendroid', ext: 'aar')
+//    implementation(name: 'opendroid', ext: 'aar')
+    implementation project(path: ':libsCenterNew:opendroid2')
+
 //    implementation files('libs/tbs_sdk_thirdapp.jar')
 //    implementation files('../../../otherlibs/alipaySdk-20180601.jar')
 }

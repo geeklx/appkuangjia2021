@@ -16,6 +16,8 @@
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/default_img</item>
+<!--        <item name="android:windowIsTranslucent">false</item>-->
+<!--        <item name="android:windowDisablePreview">true</item>-->
     </style>
 
     <style name="HXKTThemeSplash2" parent="Theme.AppCompat.Light.NoActionBar">
